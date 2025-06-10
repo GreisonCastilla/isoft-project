@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full place-items-center">
+  <div class="w-full place-items-center rounded-lg shadow-lg p-6">
 
     <div class="place-items-center p-4">
       <p>Tu zona de parqueo este mes es</p>

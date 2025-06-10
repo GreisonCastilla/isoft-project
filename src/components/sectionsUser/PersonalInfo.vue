@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col pl-4 pr-4">
+  <div class="flex flex-col rounded-lg shadow-lg p-6 ">
 
     <p class="text-xl mb-3 text-blue-600 ">
       <b>Información personal</b>
@@ -24,7 +24,7 @@
       <BasicInput
         :text="email"
         id="email"
-        name="Correo"
+        name="Correo electrónico"
         :ro="edit"
       />
 

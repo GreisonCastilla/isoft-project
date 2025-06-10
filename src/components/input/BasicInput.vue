@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-full md:w-auto">
     <label
-      class="ml-2 text-sm "
+      class="ml-2 mb-1 text-sm "
       :for="id"
     ><b>{{ name }}</b></label>
     <input
