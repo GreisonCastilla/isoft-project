@@ -4,22 +4,19 @@
       class="ml-2 mb-1 text-sm "
       :for="id"
     ><b>{{ name }}</b></label>
-    <input
+    <textarea
       class="text-sm read-only border-2 outline-none w-full md:min-w-80 border-gray-300 rounded-xl p-1
       read-only:bg-gray-300 focus:border-blue-600 read-only:focus:outline-gray-300
       transition-all duration-300 ease-in-out"
       :id="id"
-      type="text"
       v-model="text"
       :readonly="ro"
-      autocomplete="on"
-    >
+    ></textarea>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-
 const props = defineProps({
   id: String,
   name: String,
@@ -32,7 +29,6 @@ const props = defineProps({
     default: false,
   },
 })
-
 let text = ref(props.text)
 </script>
 

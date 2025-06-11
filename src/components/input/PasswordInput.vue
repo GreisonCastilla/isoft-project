@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col w-full md:max-w-80">
+  <div class="flex flex-col w-full md:w-auto">
     <label
       class="ml-2 text-sm "
       :for="id"
     ><b>{{ name }}</b></label>
 
-    <div class="flex text-sm read-only md:min-w-80  rounded-xl
+    <div class="flex text-sm md:min-w-80 w-full rounded-xl
       ">
       <input
         class="grow read-only:bg-gray-300 border-l-2 border-y-2 border-gray-300 outline-none focus:border-blue-600 p-1 read-only:focus:outline-gray-300 rounded-l-xl"
@@ -14,15 +14,15 @@
         v-model="text"
         :readonly="ro"
       >
-      <div class="pr-2 pl-2 rounded-r-lg bg-blue-600 border-2 border-blue-600 place-content-center
+      <div class="pr-2 pl-2 rounded-r-xl bg-blue-600 border-2 border-blue-600 place-content-center
       hover:bg-blue-900 hover:border-blue-900 transition-all duration-200 ease-in-out">
         <EyeOff
-          class="h-6 flex text-white"
+          class="h-6 flex text-white cursor-pointer"
           @click="changeShowPassword()"
           v-if="showPassword"
         />
-        <Eye
-          class="h-6 flex text-white"
+        <EyeIcon
+          class="h-6 flex text-white cursor-pointer"
           @click="changeShowPassword()"
           v-else
         />
@@ -35,7 +35,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import Eye from '../icons/eye.vue'
+import EyeIcon from '../icons/EyeIcon.vue'
 import EyeOff from '../icons/EyeOff.vue'
 
 const props = defineProps({

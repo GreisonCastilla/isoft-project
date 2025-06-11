@@ -1,9 +1,8 @@
 <template>
   <div>
     <hero />
-    <div class="flex flex-col sm:px-4 lg:px-80 space-y-5">
-
-      <ParkingZone />
+    <div class="flex flex-col px-4 lg:px-80 space-y-5 ">
+      <ParkingZone class="mt-5" />
       <Request />
       <PersonalInfo class="mb-3" />
     </div>
