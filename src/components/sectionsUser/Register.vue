@@ -8,28 +8,10 @@
     <div class="flex space-y-3 md:space-x-3 space-x-0 flex-wrap mb-3 place-content-center ">
 
       <BasicInput
-        id="name"
-        name="Nombre"
-      />
-
-      <BasicInput
-        id="id"
-        name="Identificación"
-      />
-
-      <BasicInput
-        id="email"
-        name="Correo electrónico"
-      />
-
-      <BasicInput
-        id="phone"
-        name="Número de teléfono"
-      />
-
-      <BasicInput
-        id="apartment"
-        name="Apartamento"
+        v-for="input in inputs"
+        :key="input"
+        :id="input.id"
+        :name="input.name"
       />
 
       <PasswordInput
@@ -58,6 +40,15 @@ import BasicButton from '../buttons/BasicButton.vue'
 import BasicInput from '../input/BasicInput.vue'
 import PasswordInput from '../input/PasswordInput.vue'
 import Edit from '../icons/Edit.vue'
+import { ref } from 'vue'
+
+let inputs = ref([
+  { id: 'name', name: 'Nombre' },
+  { id: 'id', name: 'Identificación' },
+  { id: 'email', name: 'Correo electrónico' },
+  { id: 'phone', name: 'Número de teléfono' },
+  { id: 'apartment', name: 'Apartamento' },
+])
 </script>
 
 <style lang="scss" scoped>

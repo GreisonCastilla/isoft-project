@@ -19,28 +19,10 @@
 
       <div class="flex flex-col space-y-3 mt-3 mb-3">
         <ShowInfo
-          name="Estado"
-          :description="request.state"
-        />
-
-        <ShowInfo
-          name="Fecha"
-          :description="request.date"
-        />
-
-        <ShowInfo
-          name="Tipo de vehículo"
-          :description="request.type"
-        />
-
-        <ShowInfo
-          name="Placa del vehículo"
-          :description="request.plate"
-        />
-
-        <ShowInfo
-          name="Descripción"
-          :description="request.description"
+          v-for="info in data"
+          :key="info"
+          :name="info.name"
+          :description="info.description"
         />
       </div>
 
@@ -49,14 +31,22 @@
 </template>
 
 <script setup>
-import ShowInfo from '../input/ShowInfo.vue'
+import ShowInfo from '../info/ShowInfo.vue'
 import X from '../icons/X.vue'
 
-defineProps({
+const props = defineProps({
   request: Object,
 })
 
 defineEmits(['close'])
+
+let data = [
+  { name: 'Estado', description: props.request.state },
+  { name: 'Fecha', description: props.request.date },
+  { name: 'Tipo de vehículo', description: props.request.type },
+  { name: 'Placa de vehículo', description: props.request.plate },
+  { name: 'Descripción', description: props.request.description },
+]
 </script>
 
 <style lang="scss" scoped>

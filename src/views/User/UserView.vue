@@ -16,6 +16,3 @@ import Request from '@/components/sectionsUser/Request.vue'
 import PersonalInfo from '@/components/sectionsUser/PersonalInfo.vue'
 import Hero from '@/components/Hero.vue'
 </script>
-
-<style lang="scss" scoped>
-</style>

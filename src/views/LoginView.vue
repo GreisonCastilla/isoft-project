@@ -18,12 +18,13 @@
         />
         <PasswordInput
           name="Contraseña"
-          id="Pass"
+          id="pass"
         />
       </div>
 
       <div class="flex space-x-3">
         <BasicButton
+          @click="login"
           action="Iniciar sesión"
           :comp="LoginIcon"
         />
@@ -61,6 +62,19 @@ import WriteIcon from '@/components/icons/WriteIcon.vue'
 import LoginIcon from '@/components/icons/LoginIcon.vue'
 import HideIcon from '@/components/icons/HideIcon.vue'
 import { ref } from 'vue'
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+import router from '@/router'
 
 let showRegister = ref(false)
+
+function login() {
+  if (user.value == '' || pass.value == '') {
+    toast.error('Complete todos los campos para iniciar sesión', {
+      toastId: 'empty-input',
+    })
+  } else {
+    router.replace('/ControlParkNet')
+  }
+}
 </script>

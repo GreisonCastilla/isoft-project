@@ -8,8 +8,14 @@
 
 <script setup>
 defineProps({
-  name: String,
-  description: String,
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
 })
 </script>
 

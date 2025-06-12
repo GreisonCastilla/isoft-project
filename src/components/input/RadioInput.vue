@@ -9,6 +9,7 @@
         :key="option"
       >
         <input
+          @change="onChange"
           type="radio"
           :name="name"
           :id="option.id"
@@ -22,11 +23,27 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
 defineProps({
   label: String,
   name: String,
   options: Array,
 })
+
+let value = ref(null)
+
+defineExpose({
+  sendValue,
+})
+
+function sendValue() {
+  return value.value
+}
+
+function onChange(event) {
+  value.value = event.target.value
+}
 </script>
 
 <style lang="scss" scoped>
