@@ -11,11 +11,12 @@
         </tr>
       </thead>
 
-      <tbody
-        v-for="row in data"
-        :key="row.id"
-      >
-        <Row :request="row" />
+      <tbody>
+        <Row
+          v-for="row in data"
+          :key="row.id"
+          :request="row"
+        />
       </tbody>
 
     </table>

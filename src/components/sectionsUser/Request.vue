@@ -18,7 +18,7 @@
     >
       <p>No se han realizado solicitudes</p>
     </div>
-    <Table
+    <TableUser
       v-else
       :titles="titles"
       :data="data"
@@ -35,7 +35,7 @@ import { ref } from 'vue'
 import BasicButton from '../buttons/BasicButton.vue'
 import RequestIcon from '../icons/RequestIcon.vue'
 import RequestPopup from '../popups/RequestPopup.vue'
-import Table from '../Table/TableUser.vue'
+import TableUser from '../TableUser/TableUser.vue'
 
 let showRequestPopup = ref(false)
 let titles = ref(['id', 'Tipo de vehículo', 'Placa', 'Estado'])

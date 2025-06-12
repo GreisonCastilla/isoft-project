@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="flex flex-col h-screen">
     <Hero />
-    <div class="flex flex-col px-4 lg:px-80 space-y-5 ">
+    <div class="flex flex-col grow px-4 lg:px-80 space-y-5 ">
       <Options
         class="mt-5"
         @sendValue="getValue"

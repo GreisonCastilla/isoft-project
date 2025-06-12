@@ -4,10 +4,11 @@
     class=" text-center text-sm border-b-1 hover:bg-blue-100 cursor-pointer transition-all duration-300"
   >
 
-    <td class="p-2">{{ request.id }}</td>
-    <td class="p-2">{{ request.type }}</td>
-    <td class="p-2">{{ request.plate }}</td>
-    <td class="p-2">{{ request.state }}</td>
+    <td
+      v-for="cell in data"
+      :key="cell"
+      class="p-2"
+    >{{ cell }}</td>
 
   </tr>
   <InfoRequestPopup
@@ -20,11 +21,12 @@
 <script setup>
 import { ref } from 'vue'
 import InfoRequestPopup from '../popups/InfoRequestPopup.vue'
-defineProps({
+const props = defineProps({
   request: Object,
 })
 
 let showInfoRequestPopup = ref(false)
+let data = [props.request.id, props.request.type, props.request.plate, props.request.state]
 
 function showInfo() {
   showInfoRequestPopup.value = true

@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <InfoIcon />
-    <p>{{ message }}</p>
+  <div class="flex space-x-2 items-center">
+    <div>
+      <InfoIcon class="h-6  fill-blue-600" />
+    </div>
+
+    <div>
+      <p>{{ message }}</p>
+    </div>
+
   </div>
 </template>
 

@@ -3,7 +3,7 @@
 
     <div class="flex space-x-2">
       <div
-        class="p-2 cursor-pointer rounded-xl border-blue-600 hover:bg-blue-200 "
+        class="p-2 cursor-pointer rounded-xl border-blue-600 hover:bg-blue-200 transition-all duration-300 ease-in-out "
         :class="{'bg-blue-600 text-white hover:bg-blue-800':selected==option}"
         @click="sendValue(option)"
         v-for="option in options"
