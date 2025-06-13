@@ -9,7 +9,7 @@
       class="p-2"
     >{{ cell }}</td>
   </tr>
-  <InfoRequestPopup
+  <InfoRequestAdmin
     :request="request"
     @close="showInfoRequestPopup = false"
     v-show="showInfoRequestPopup"
@@ -18,7 +18,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import InfoRequestPopup from '../popups/InfoRequestPopup.vue'
+import InfoRequestAdmin from '../popups/InfoRequestAdmin.vue'
 const props = defineProps({
   request: Object,
 })

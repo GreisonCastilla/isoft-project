@@ -1,10 +1,10 @@
 <template>
-  <div class="flex max-w-full ">
-    <table class="w-full  rounded-xl overflow-hidden">
-      <thead>
-        <tr class="bg-blue-600 border-1 border-blue-600 ">
+  <div class=" max-h-full  overflow-y-auto">
+    <table class="w-full">
+      <thead class="sticky -top-1 z-10">
+        <tr class=" bg-blue-600 border-1 border-blue-600 ">
           <th
-            class="p-2  text-sm text-white"
+            class="p-2 text-sm text-white "
             v-for="title in titles"
             :key="title"
           >{{title}}</th>
@@ -12,9 +12,9 @@
       </thead>
 
       <tbody>
-        <RowUser
+        <RowAccount
           v-for="row in data"
-          :key="row.id"
+          :key="row"
           :request="row"
         />
       </tbody>
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import RowUser from './RowUser.vue'
+import RowAccount from './RowAccount.vue'
 defineProps({
   titles: Array,
   data: Array,

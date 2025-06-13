@@ -12,7 +12,7 @@
       </thead>
 
       <tbody>
-        <Row
+        <RowRequest
           v-for="row in data"
           :key="row"
           :request="row"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import Row from './Row.vue'
+import RowRequest from './RowRequest.vue'
 defineProps({
   titles: Array,
   data: Array,

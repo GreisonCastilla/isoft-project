@@ -3,10 +3,12 @@
     <p class="text-xl mb-3 text-blue-600 ">
       <b>Solicitudes</b>
     </p>
-    <info message="Puede clicar cada solicitud para ver en detalle o eliminar la solicitud." />
-    <div class="rounded-lg overflow-hidden ">
+    <info
+      class="mb-3"
+      message="Puede clicar cada solicitud para ver en detalle o eliminar la solicitud."
+    />
+    <div class="rounded-xl overflow-hidden ">
       <TableRequest
-        class="mt-3"
         :titles="titles"
         :data="data"
       />
@@ -24,137 +26,6 @@ let titles = ['Id', 'Tipo de vehículo', 'Placa', 'Discapacidad', 'Mes pasado', 
 let data = ref([
   {
     id: 1,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 2,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 3,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 4,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 5,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 6,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-
-  {
-    id: 7,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 8,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 9,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 10,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 10,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 10,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 10,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-  {
-    id: 10,
     plate: 'AAA-123',
     type: 'Automobil',
     state: 'Pendiente',

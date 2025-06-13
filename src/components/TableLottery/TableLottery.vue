@@ -12,7 +12,7 @@
       </thead>
 
       <tbody>
-        <RowUser
+        <RowLottery
           v-for="row in data"
           :key="row.id"
           :request="row"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import RowUser from './RowUser.vue'
+import RowLottery from './RowLottery.vue'
 defineProps({
   titles: Array,
   data: Array,

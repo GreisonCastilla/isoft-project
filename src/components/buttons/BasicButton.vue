@@ -4,7 +4,7 @@
     {{action}}
     <component
       v-if="comp!=null"
-      class="h-5 ml-2"
+      class="h-5 ml-2  text-white"
       :is="comp"
     />
   </button>
