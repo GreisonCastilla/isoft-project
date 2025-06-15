@@ -31,12 +31,19 @@
           :comp="AceptIcon"
         />
         <RedButton
+          @click="showConfirmPopup=true"
           action="Eliminar"
           :comp="DeleteIcon"
         />
       </div>
 
     </div>
+    <ConfirmPopup
+      v-if="showConfirmPopup"
+      @confirm="deleteRequest()"
+      @cancel="showConfirmPopup=false"
+      message="¿Seguro que desea eliminar esta solicitud?"
+    />
   </div>
 </template>
 
@@ -47,12 +54,16 @@ import DeleteIcon from '../icons/DeleteIcon.vue'
 import X from '../icons/X.vue'
 import RedButton from '../buttons/RedButton.vue'
 import BasicButton from '../buttons/BasicButton.vue'
+import ConfirmPopup from './ConfirmPopup.vue'
+import { ref } from 'vue'
 
 const props = defineProps({
   request: Object,
 })
 
-defineEmits(['close'])
+const emit = defineEmits(['close'])
+
+let showConfirmPopup = ref(false)
 
 let data = [
   { name: 'Estado', description: props.request.state },
@@ -63,4 +74,10 @@ let data = [
   { name: 'Placa de vehículo', description: props.request.plate },
   { name: 'Descripción', description: props.request.description },
 ]
+
+function deleteRequest() {
+  alert('Solicitud eliminada')
+  emit('close')
+  showConfirmPopup.value = false
+}
 </script>

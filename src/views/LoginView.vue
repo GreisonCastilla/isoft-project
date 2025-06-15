@@ -24,7 +24,7 @@
 
       <div class="flex space-x-3">
         <BasicButton
-          @click="login"
+          @click="access"
           action="Iniciar sesión"
           :comp="LoginIcon"
         />
@@ -64,17 +64,19 @@ import HideIcon from '@/components/icons/HideIcon.vue'
 import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
-import router from '@/router'
+import { useAuthStore } from '@/store/authStore'
+
+const auth = useAuthStore()
 
 let showRegister = ref(false)
 
-function login() {
+function access() {
   if (user.value == '' || pass.value == '') {
     toast.error('Complete todos los campos para iniciar sesión', {
       toastId: 'empty-input',
     })
   } else {
-    router.replace('/ControlParkNet')
+    auth.login('Token-JWT', user.value)
   }
 }
 </script>

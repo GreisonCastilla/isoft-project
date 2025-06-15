@@ -28,20 +28,19 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const auth = useAuthStore()
-  const { user } = auth
 
-  if (!user.isAuthenticated && to.meta.requiresAuth) {
+  if (auth.token == null && to.meta.requiresAuth) {
     return next('/')
   }
 
-  if (to.path === '/ControlParkNet') {
-    if (user.role === 'admin') return next('/ControlParkNetAdmin')
-    if (user.role === 'user') return next('/ControlParkNetUser')
+  if (to.path === '/ControlParkNet' || (auth.token && to.path === '/')) {
+    if (auth.user.role === 'admin') return next('/ControlParkNetAdmin')
+    if (auth.user.role === 'user') return next('/ControlParkNetUser')
     return next('/')
   }
 
   // Verificación de roles permitidos en meta
-  if (to.meta.roles && !to.meta.roles.includes(user.role)) {
+  if (to.meta.roles && !to.meta.roles.includes(auth.user.role)) {
     return next('/') // o a una vista de "no autorizado"
   }
 

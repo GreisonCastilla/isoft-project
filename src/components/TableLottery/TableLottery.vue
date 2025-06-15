@@ -1,7 +1,7 @@
 <template>
-  <div class="flex max-w-full ">
-    <table class="w-full  rounded-xl overflow-hidden">
-      <thead>
+  <div class=" max-h-full  overflow-y-auto ">
+    <table class="w-full  ">
+      <thead class="sticky -top-1 z-10">
         <tr class="bg-blue-600 border-1 border-blue-600 ">
           <th
             class="p-2  text-sm text-white"

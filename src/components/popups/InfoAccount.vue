@@ -31,13 +31,21 @@
           :state="aux"
         />
         <RedButton
+          @click="showConfirmPopup = true"
           action="Eliminar"
           :comp="DeleteIcon"
         />
       </div>
 
     </div>
+    <ConfirmPopup
+      @confirm="deleteAccount"
+      @cancel="showConfirmPopup=false"
+      v-if="showConfirmPopup"
+      message="¿Seguro desea eliminar esta cuenta?"
+    />
   </div>
+
 </template>
 
 <script setup>
@@ -46,12 +54,16 @@ import DeleteIcon from '../icons/DeleteIcon.vue'
 import X from '../icons/X.vue'
 import RedButton from '../buttons/RedButton.vue'
 import StateButton from '../buttons/StateButton.vue'
+import ConfirmPopup from './ConfirmPopup.vue'
 import { ref } from 'vue'
-import { defineExpose } from 'vue'
+
+const emit = defineEmits(['close', 'changeState'])
 
 const props = defineProps({
   request: Object,
 })
+
+let showConfirmPopup = ref(false)
 
 let aux = ref(props.request.state)
 
@@ -59,11 +71,15 @@ function changeState() {
   aux.value = !aux.value
 }
 
+function deleteAccount() {
+  alert('se elimino la cuenta')
+  showConfirmPopup.value = false
+  emit('close')
+}
+
 defineExpose({
   changeState,
 })
-
-defineEmits(['close', 'changeState'])
 
 let data = [
   { name: 'Nombre', description: props.request.name },

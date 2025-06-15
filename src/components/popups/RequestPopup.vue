@@ -63,7 +63,7 @@ const options = [
     id: 'motorcycle',
   },
   {
-    name: 'Automobil',
+    name: 'Automóvil',
     id: 'car',
   },
 ]
