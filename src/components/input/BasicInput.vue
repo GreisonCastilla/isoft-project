@@ -9,8 +9,8 @@
       read-only:bg-gray-300 focus:border-blue-600 read-only:focus:outline-gray-300 read-only:cursor-pointer
       transition-all duration-300 ease-in-out"
       :id="id"
-      type="text"
       v-model="text"
+      :type="type"
       :readonly="ro"
       autocomplete="on"
     >
@@ -30,6 +30,10 @@ const props = defineProps({
   ro: {
     type: Boolean,
     default: false,
+  },
+  type: {
+    type: String,
+    default: 'text',
   },
 })
 

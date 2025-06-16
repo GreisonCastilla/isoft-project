@@ -16,12 +16,12 @@ const router = createRouter({
     {
       path: '/ControlParkNetAdmin',
       component: () => import('../views/Admin/AdminView.vue'),
-      meta: { requiresAuth: true, roles: ['admin'] },
+      meta: { requiresAuth: true, roles: ['administrador'] },
     },
     {
       path: '/ControlParkNetUser',
       component: () => import('../views/User/UserView.vue'),
-      meta: { requiresAuth: true, roles: ['user'] },
+      meta: { requiresAuth: true, roles: ['residente'] },
     },
   ],
 })
@@ -33,13 +33,12 @@ router.beforeEach((to, from, next) => {
     return next('/')
   }
 
-  if (to.path === '/ControlParkNet' || (auth.token && to.path === '/')) {
-    if (auth.user.role === 'admin') return next('/ControlParkNetAdmin')
-    if (auth.user.role === 'user') return next('/ControlParkNetUser')
+  if (to.path === '/ControlParkNet' || (auth.token && to.path == '/')) {
+    if (auth.user.role == 'administrador') return next('/ControlParkNetAdmin')
+    if (auth.user.role == 'residente') return next('/ControlParkNetUser')
     return next('/')
   }
 
-  // Verificación de roles permitidos en meta
   if (to.meta.roles && !to.meta.roles.includes(auth.user.role)) {
     return next('/') // o a una vista de "no autorizado"
   }

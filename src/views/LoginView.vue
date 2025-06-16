@@ -64,19 +64,16 @@ import HideIcon from '@/components/icons/HideIcon.vue'
 import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
-import { useAuthStore } from '@/store/authStore'
-
-const auth = useAuthStore()
+import { login } from '@/api/user'
 
 let showRegister = ref(false)
 
 function access() {
-  if (user.value == '' || pass.value == '') {
-    toast.error('Complete todos los campos para iniciar sesión', {
-      toastId: 'empty-input',
-    })
+  if (user.value != '' || pass.value != '') {
+    let data = { username: user.value, password: pass.value }
+    login(data)
   } else {
-    auth.login('Token-JWT', user.value)
+    toast.error('Debe ingresar todos los campos')
   }
 }
 </script>

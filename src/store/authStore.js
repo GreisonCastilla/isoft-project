@@ -8,14 +8,10 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   actions: {
-    login(token, user) {
+    saveToken(token, user) {
       this.token = token
 
-      if (user === 'admin') {
-        this.user = { name: user, role: 'admin', isAuthenticated: true }
-      } else {
-        this.user = { name: user, role: 'user', isAuthenticated: true }
-      }
+      this.user = user
       router.replace('/ControlParkNet')
     },
     logout() {
