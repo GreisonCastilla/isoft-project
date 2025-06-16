@@ -9,7 +9,7 @@
     >
       <div class=" flex w-full place-content-between align-middle">
         <p class="text-xl mb-2 text-blue-600 ">
-          <b>Cuenta {{ request.id }}</b>
+          <b>Cuenta {{ parseInt(request.id.slice(-6), 16)}}</b>
         </p>
         <X
           class="text-red-600 "
@@ -27,8 +27,8 @@
       </div>
       <div class="flex space-x-3 mt-3">
         <StateButton
-          @click="$emit('changeState')"
-          :state="aux"
+          @click="changeStatus()"
+          :status="request.status"
         />
         <RedButton
           @click="showConfirmPopup = true"
@@ -56,8 +56,9 @@ import RedButton from '../buttons/RedButton.vue'
 import StateButton from '../buttons/StateButton.vue'
 import ConfirmPopup from './ConfirmPopup.vue'
 import { ref } from 'vue'
-
-const emit = defineEmits(['close', 'changeState'])
+import { deleteUser } from '@/api/admin'
+import { changeStateUser } from '@/api/admin'
+const emit = defineEmits(['close'])
 
 const props = defineProps({
   request: Object,
@@ -65,27 +66,27 @@ const props = defineProps({
 
 let showConfirmPopup = ref(false)
 
-let aux = ref(props.request.state)
-
-function changeState() {
-  aux.value = !aux.value
-}
-
-function deleteAccount() {
-  alert('se elimino la cuenta')
+async function deleteAccount() {
+  await deleteUser(props.request.cc)
   showConfirmPopup.value = false
   emit('close')
+  location.reload()
 }
 
-defineExpose({
-  changeState,
-})
+async function changeStatus() {
+  if (props.request.status === 'pending_approval') {
+    await changeStateUser(props.request.id, 'active')
+  } else {
+    await changeStateUser(props.request.id, 'pending_approval')
+  }
+  location.reload()
+}
 
 let data = [
-  { name: 'Nombre', description: props.request.name },
-  { name: 'Identificación', description: props.request.id + '' },
+  { name: 'Nombre', description: props.request.full_name },
+  { name: 'Identificación', description: props.request.cc + '' },
   { name: 'Correo electrónico', description: props.request.email },
-  { name: 'Número de teléfono', description: props.request.tel + '' },
-  { name: 'Apartamento', description: props.request.apart },
+  { name: 'Número de teléfono', description: props.request.phone_number + '' },
+  { name: 'Apartamento', description: props.request.apartment },
 ]
 </script>

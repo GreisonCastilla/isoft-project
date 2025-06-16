@@ -21,20 +21,24 @@
 import Info from '../info/Info.vue'
 import TableRequest from '../TableRequest/TableRequest.vue'
 import { ref } from 'vue'
-let titles = ['Id', 'Tipo de vehículo', 'Placa', 'Discapacidad', 'Mes pasado', 'Estado']
+import { getRequests } from '@/api/admin'
 
-let data = ref([
-  {
-    id: 1,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-    lastMonth: 'Si',
-    disability: 'Si',
-  },
-])
+let titles = ['Id', 'Tipo de vehículo', 'Placa', 'Discapacidad', 'Estado']
+
+let data = ref([])
+
+async function getData() {
+  const date = new Date()
+
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0') // Enero = 0
+
+  const format = `${year}-${month}`
+  console.log(format)
+  data.value = await getRequests({ format })
+}
+
+getData()
 </script>
 
 <style lang="scss" scoped>

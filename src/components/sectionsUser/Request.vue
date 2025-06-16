@@ -13,16 +13,21 @@
     </div>
     <p class="mb-2"><b>Estado de Solicitud</b></p>
     <div
-      v-if="titles == null"
+      v-if="data == null || data == []"
       class="bg-gray-300 p-3 rounded-lg text-center"
     >
       <p>No se han realizado solicitudes</p>
     </div>
-    <TableUser
+
+    <div
       v-else
-      :titles="titles"
-      :data="data"
-    />
+      class="rounded-xl overflow-hidden "
+    >
+      <TableUser
+        :titles="titles"
+        :data="data"
+      />
+    </div>
     <RequestPopup
       v-show="showRequestPopup"
       @close="showRequestPopup=false"
@@ -37,26 +42,16 @@ import RequestIcon from '../icons/RequestIcon.vue'
 import RequestPopup from '../popups/RequestPopup.vue'
 import TableUser from '../TableUser/TableUser.vue'
 
+import { getRecuest } from '@/api/user'
+
 let showRequestPopup = ref(false)
 let titles = ref(['id', 'Tipo de vehículo', 'Placa', 'Estado'])
-let data = ref([
-  {
-    id: 1234,
-    plate: 'AAA-123',
-    type: 'Automobil',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'una descripcion convincente',
-  },
-  {
-    id: 12345,
-    plate: 'BBB-123',
-    type: 'Motocicleta',
-    state: 'Pendiente',
-    date: '02/03/2020',
-    description: 'me tropece mientras subia la escalera por lo que me encuentro incapacitado',
-  },
-])
+let data = ref(null)
+async function recuests() {
+  data.value = await getRecuest()
+}
+
+recuests()
 </script>
 
 <style lang="scss" scoped>

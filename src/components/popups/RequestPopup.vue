@@ -1,7 +1,7 @@
 <template>
   <div
     @click="$emit('close')"
-    class="fixed grid place-content-center top-0 left-0  h-full w-full bg-gray-600/50 "
+    class="fixed grid place-content-center top-0 left-0 z-11  h-full w-full bg-gray-600/50 "
   >
     <div
       @click.stop
@@ -27,6 +27,10 @@
         <BasicInput
           name="Placa del vehículo"
           id="plate"
+        />
+        <CheckButtom
+          id="disability"
+          name="Discapacidad"
         />
         <BasicTextArea
           name="Descripción"
@@ -54,17 +58,19 @@ import RequestIcon from '../icons/RequestIcon.vue'
 import 'vue3-toastify/dist/index.css'
 import { toast } from 'vue3-toastify'
 import { ref } from 'vue'
+import CheckButtom from '../input/CheckButtom.vue'
+import { postRequest } from '@/api/user'
 
 const radioInput = ref(null)
 
 const options = [
   {
     name: 'Motocicleta',
-    id: 'motorcycle',
+    id: 'motocicleta',
   },
   {
     name: 'Automóvil',
-    id: 'car',
+    id: 'automovil',
   },
 ]
 
@@ -72,7 +78,6 @@ const emit = defineEmits(['close'])
 
 function request() {
   let auxType = ''
-
   if (radioInput.value) {
     auxType = radioInput.value.sendValue()
   }
@@ -82,9 +87,22 @@ function request() {
       toastId: 'empty-input-request',
     })
   } else {
-    toast.success(`tipo de vehiculo: ${auxType}!`, {
-      toastId: 'sucess-request',
-    })
+    if (auxType != null) {
+      let data = {
+        description: description.value,
+        disability: disability.checked,
+        license_plate: plate.value,
+        vehicle_type: auxType,
+        lottery_period: '2025-06',
+        pay: true,
+      }
+
+      postRequest(data)
+    } else {
+      toast.error('Complete todos los campos para realizar una solicitud', {
+        toastId: 'empty-input-request',
+      })
+    }
   }
 }
 </script>

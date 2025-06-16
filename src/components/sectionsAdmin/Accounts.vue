@@ -27,19 +27,17 @@
 import { ref } from 'vue'
 import Info from '../info/Info.vue'
 import TableAccount from '../TableAccount/TableAccount.vue'
+import { getUsers } from '@/api/admin'
 
-let titles = ['Nombre', 'Identificación', 'Correo', 'Número de teléfono', 'Apartamento', 'Estado']
+let titles = ['Nombre', 'Identificación', 'Correo', 'Número de teléfono', 'Apartamento']
 
-let data = ref([
-  {
-    name: 'Greison Rey Castilla Carmona',
-    id: Math.random(),
-    email: 'gcastillac@gmail.com',
-    tel: 3207152725,
-    apart: 'p2-17',
-    state: true,
-  },
-])
+let data = ref([])
+
+async function getData() {
+  data.value = await getUsers()
+}
+
+getData()
 </script>
 
 <style lang="scss" scoped>

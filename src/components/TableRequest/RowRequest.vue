@@ -25,13 +25,29 @@ const props = defineProps({
 
 let showInfoRequestPopup = ref(false)
 let data = [
-  props.request.id,
-  props.request.type,
-  props.request.plate,
-  props.request.disability,
-  props.request.lastMonth,
-  props.request.state,
+  parseInt(props.request.id.slice(-6), 16),
+  props.request.vehicle_type,
+  props.request.license_plate,
+  showDisability(),
+  showStatus(),
 ]
+
+function showDisability() {
+  if (props.request.disability) {
+    return 'Si'
+  }
+  return 'No'
+}
+
+function showStatus() {
+  let status = props.request.status
+  if (status === 'pending') {
+    return 'Pendiente'
+  } else if (status === 'accepted') {
+    return 'Aceptado'
+  }
+  return 'Rechazado'
+}
 
 function showInfo() {
   showInfoRequestPopup.value = true

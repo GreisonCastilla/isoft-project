@@ -8,18 +8,10 @@
       :key="cell"
       class="p-2"
     >{{ cell }}</td>
-    <td class="p-2">
-      <StateButton
-        @click="changeState"
-        :state="aux.state"
-      />
-    </td>
   </tr>
   <InfoAccount
     ref="infoAccount"
-    :request="aux"
-    :state="aux.state"
-    @changeState="changeState"
+    :request="props.request"
     @close="showInfoRequestPopup = false"
     v-if="showInfoRequestPopup"
   />
@@ -27,32 +19,23 @@
 
 <script setup>
 import { ref } from 'vue'
-import StateButton from '../buttons/StateButton.vue'
 import InfoAccount from '../popups/InfoAccount.vue'
 const props = defineProps({
   request: Object,
 })
 const infoAccount = ref(null)
-let aux = ref(props.request)
 
 let showInfoRequestPopup = ref(false)
 let data = ref([
-  props.request.name,
-  props.request.id,
+  props.request.full_name,
+  props.request.cc,
   props.request.email,
-  props.request.tel,
-  props.request.apart,
+  props.request.phone_number,
+  props.request.apartment,
 ])
 
 function showInfo() {
   showInfoRequestPopup.value = true
-}
-
-function changeState() {
-  if (infoAccount.value) {
-    infoAccount.value.changeState()
-  }
-  aux.value.state = !aux.value.state
 }
 </script>
 

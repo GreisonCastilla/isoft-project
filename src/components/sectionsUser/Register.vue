@@ -116,6 +116,7 @@ async function sendRegister() {
   }
   register(data)
     .then((res) => {
+      clearInputs()
       toast.success(
         'Su cuenta ha sido registrada, por favor espere a que un administrador la habilite',
         {

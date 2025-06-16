@@ -26,7 +26,12 @@ const props = defineProps({
 })
 
 let showInfoRequestPopup = ref(false)
-let data = [props.request.id, props.request.type, props.request.plate, props.request.state]
+let data = [
+  parseInt(props.request.id.slice(-6), 16),
+  props.request.vehicle_type,
+  props.request.license_plate,
+  props.request.status,
+]
 
 function showInfo() {
   showInfoRequestPopup.value = true

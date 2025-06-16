@@ -16,7 +16,7 @@ const props = defineProps({
   request: Object,
 })
 
-let data = [props.request.id, props.request.name, props.request.apart, props.request.parkingZone]
+let data = [props.request.cc, props.request.full_name, props.request.apartment, props.request.spot]
 </script>
 
 <style lang="scss" scoped>

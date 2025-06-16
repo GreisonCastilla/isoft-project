@@ -7,6 +7,7 @@
       <RedButton
         @click="showConfirmPopup=true"
         action="Cerrar sesión"
+        :comp="LogOut"
       />
     </div>
     <ConfirmPopup
@@ -20,10 +21,11 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/store/authStore'
 import RedButton from '@/components/buttons/RedButton.vue'
 import ConfirmPopup from './popups/ConfirmPopup.vue'
 import { ref } from 'vue'
+import { useAuthStore } from '@/store/authStore'
+import LogOut from './icons/LogOut.vue'
 
 const auth = useAuthStore()
 let showConfirmPopup = ref(false)

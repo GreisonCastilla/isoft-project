@@ -27,7 +27,15 @@
       </div>
       <div class="flex space-x-3 mt-3">
         <BasicButton
+          v-if="verifyPending()"
+          @click="aceptRequest()"
           action="Aceptar"
+          :comp="AceptIcon"
+        />
+        <BasicButton
+          v-else
+          @click="pendingRequest"
+          action="Colocar pendiente"
           :comp="AceptIcon"
         />
         <RedButton
@@ -40,7 +48,7 @@
     </div>
     <ConfirmPopup
       v-if="showConfirmPopup"
-      @confirm="deleteRequest()"
+      @confirm="deleteR()"
       @cancel="showConfirmPopup=false"
       message="¿Seguro que desea eliminar esta solicitud?"
     />
@@ -56,7 +64,10 @@ import RedButton from '../buttons/RedButton.vue'
 import BasicButton from '../buttons/BasicButton.vue'
 import ConfirmPopup from './ConfirmPopup.vue'
 import { ref } from 'vue'
-
+import { changeState } from '@/api/admin'
+import { toast } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+import { deleteRequest } from '@/api/admin'
 const props = defineProps({
   request: Object,
 })
@@ -65,19 +76,54 @@ const emit = defineEmits(['close'])
 
 let showConfirmPopup = ref(false)
 
+const date = new Date(props.request.updated_at)
+const formated = new Intl.DateTimeFormat('es-CO').format(date)
+
 let data = [
-  { name: 'Estado', description: props.request.state },
-  { name: 'Pago el mes pasado', description: props.request.lastMonth },
-  { name: 'Discapacidad', description: props.request.disability },
-  { name: 'Fecha', description: props.request.date },
-  { name: 'Tipo de vehículo', description: props.request.type },
-  { name: 'Placa de vehículo', description: props.request.plate },
+  { name: 'Estado', description: showStatus() },
+  { name: 'Discapacidad', description: showDisability() },
+  { name: 'Fecha', description: formated },
+  { name: 'Tipo de vehículo', description: props.request.vehicle_type },
+  { name: 'Placa de vehículo', description: props.request.license_plate },
   { name: 'Descripción', description: props.request.description },
 ]
 
-function deleteRequest() {
-  alert('Solicitud eliminada')
+function verifyPending() {
+  return props.request.status === 'pending'
+}
+
+async function aceptRequest() {
+  await changeState(props.request.id, 'accepted')
+  toast.success('Se cambio el estado correctamente')
+  location.reload()
+}
+
+async function pendingRequest() {
+  await changeState(props.request.id, 'pending')
+  toast.success('Se cambio el estado correctamente')
+  location.reload()
+}
+
+function showDisability() {
+  if (props.request.disability) {
+    return 'Si'
+  }
+  return 'No'
+}
+
+function showStatus() {
+  let status = props.request.status
+  if (status === 'pending') {
+    return 'Pendiente'
+  } else if (status === 'accepted') {
+    return 'Aceptado'
+  }
+  return 'Rechazado'
+}
+
+async function deleteR() {
+  await deleteRequest(props.request.id)
   emit('close')
-  showConfirmPopup.value = false
+  location.reload()
 }
 </script>

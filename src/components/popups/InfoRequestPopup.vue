@@ -9,7 +9,7 @@
     >
       <div class=" flex w-full place-content-between align-middle">
         <p class="text-xl mb-2 text-blue-600 ">
-          <b>Solicitud {{ request.id }}</b>
+          <b>Solicitud {{ legible }}</b>
         </p>
         <X
           class="text-red-600 "
@@ -39,12 +39,14 @@ const props = defineProps({
 })
 
 defineEmits(['close'])
-
+const date = new Date(props.request.updated_at)
+const formated = new Intl.DateTimeFormat('es-CO').format(date)
+const legible = parseInt(props.request.id.slice(-6), 16)
 let data = [
-  { name: 'Estado', description: props.request.state },
-  { name: 'Fecha', description: props.request.date },
-  { name: 'Tipo de vehículo', description: props.request.type },
-  { name: 'Placa de vehículo', description: props.request.plate },
+  { name: 'Estado', description: props.request.status },
+  { name: 'Fecha', description: formated },
+  { name: 'Tipo de vehículo', description: props.request.vehicle_type },
+  { name: 'Placa de vehículo', description: props.request.license_plate },
   { name: 'Descripción', description: props.request.description },
 ]
 </script>
